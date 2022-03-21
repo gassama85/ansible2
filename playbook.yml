@@ -1,0 +1,13 @@
+---
+- name: Create user on all managed nodes
+  become: true
+  hosts: all
+  tasks:
+    - name: user creation
+      user:
+       name: ansu
+       password: skyda
+       uid: 12345
+       shell: /bin/bash
+       comment: "a super user"
+...

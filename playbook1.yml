@@ -1,0 +1,23 @@
+---
+- name: configure apache2
+  become: true
+  hosts: all
+  tasks:
+    - name: install apache2
+      apt:
+       name: apache2
+       state: present
+       update_cache: yes
+    - name: restart apache2
+      service:
+        name: apache2
+        state: restarted
+    - name: check url response of apache2 on Managednode1
+      uri:
+        url: http://172.32.17.27
+        status_code: 200
+    - name: check url response of apache2 on Managednode2
+      uri:
+        url: http://172.31.81.45
+        status_code: 200
+...
